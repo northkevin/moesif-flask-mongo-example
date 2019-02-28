@@ -13,9 +13,10 @@ import imp
 helper_module = imp.load_source('*', './app/helpers.py')
 
 # Select the database
-db = client.restfulapi
+db = client.mydata
 # Select the collection
-collection = db.users
+collection = db.exercises
+endpoint = "exercises"
 
 @app.route("/")
 def get_initial_response():
@@ -32,7 +33,7 @@ def get_initial_response():
     return resp
 
 
-@app.route("/api/v1/users", methods=['POST'])
+@app.route("/api/v1/exercises", methods=['POST'])
 def create_user():
     """
        Function to create new users.
@@ -61,7 +62,7 @@ def create_user():
         return "", 500
 
 
-@app.route("/api/v1/users", methods=['GET'])
+@app.route("/api/v1/exercises", methods=['GET'])
 def fetch_users():
     """
        Function to fetch the users.
@@ -101,7 +102,7 @@ def fetch_users():
         return "", 500
 
 
-@app.route("/api/v1/users/<user_id>", methods=['POST'])
+@app.route("/api/v1/exercises/<user_id>", methods=['POST'])
 def update_user(user_id):
     """
        Function to update the user.
@@ -132,7 +133,7 @@ def update_user(user_id):
         return "", 500
 
 
-@app.route("/api/v1/users/<user_id>", methods=['DELETE'])
+@app.route("/api/v1/exercises/<user_id>", methods=['DELETE'])
 def remove_user(user_id):
     """
        Function to remove the user.
